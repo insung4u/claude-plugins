@@ -4,8 +4,9 @@
   "type": "module",
   "description": "MCP server for rendering HTML to PNG using Puppeteer",
   "dependencies": {
+    "@fontsource/noto-sans-kr": "^5.2.9",
     "@modelcontextprotocol/sdk": "^1.0.0",
-    "puppeteer": "^22.0.0",
+    "puppeteer-core": "^24.15.0",
     "zod": "^3.0.0"
   }
 }

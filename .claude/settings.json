@@ -6,5 +6,6 @@
         "repo": "insung4u/claude-plugins"
       }
     }
-  }
+  },
+  "outputStyle": "Plugin Korean Style"
 }

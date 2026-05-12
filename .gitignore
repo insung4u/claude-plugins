@@ -2,3 +2,9 @@
 Thumbs.db
 *.log
 node_modules/
+.env
+.env.local
+.cache/
+.venv/
+__pycache__/
+*.pyc

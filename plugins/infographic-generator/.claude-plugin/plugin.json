@@ -4,8 +4,8 @@
   "description": "한글 완벽 지원 인포그래픽 생성기 (HTML/CSS + Puppeteer)",
   "mcpServers": {
     "puppeteer-renderer": {
-      "command": "pwsh",
-      "args": ["-NonInteractive", "-File", "${CLAUDE_PLUGIN_ROOT}/mcp-server/start.ps1"]
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/mcp-server/start.js"]
     }
   }
 }

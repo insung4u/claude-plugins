@@ -1,0 +1,5 @@
+{
+  "name": "plugin-creator",
+  "version": "1.0.0",
+  "description": "Claude Code 플러그인을 대화형으로 만들어주는 플러그인 생성 도우미"
+}
