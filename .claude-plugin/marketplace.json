@@ -1,0 +1,13 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "claude-plugins",
+  "description": "Personal and team Claude Code plugins managed by insung4u",
+  "owner": {
+    "name": "insung4u",
+    "email": "islee@pulip.com"
+  },
+  "metadata": {
+    "pluginRoot": "./plugins"
+  },
+  "plugins": []
+}
