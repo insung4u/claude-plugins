@@ -1,13 +1,26 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "claude-plugins",
+  "name": "insung4u-plugins",
   "description": "Personal and team Claude Code plugins managed by insung4u",
   "owner": {
     "name": "insung4u",
-    "email": "islee@pulip.com"
+    "email": "insung4u@gmail.com"
   },
   "metadata": {
     "pluginRoot": "./plugins"
   },
-  "plugins": []
+  "plugins": [
+    {
+      "name": "infographic-generator",
+      "source": "./infographic-generator",
+      "description": "한글 완벽 지원 인포그래픽 생성기 (HTML/CSS + Puppeteer)",
+      "version": "1.0.0",
+      "author": {
+        "name": "insung4u",
+        "email": "insung4u@gmail.com"
+      },
+      "category": "productivity",
+      "tags": ["infographic", "design", "korean", "image", "puppeteer"]
+    }
+  ]
 }

@@ -1,6 +1,6 @@
 {
   "extraKnownMarketplaces": {
-    "claude-plugins": {
+    "insung4u-plugins": {
       "source": {
         "source": "github",
         "repo": "insung4u/claude-plugins"

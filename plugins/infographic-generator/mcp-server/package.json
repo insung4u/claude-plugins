@@ -1,0 +1,11 @@
+{
+  "name": "puppeteer-renderer-mcp",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "MCP server for rendering HTML to PNG using Puppeteer",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "puppeteer": "^22.0.0",
+    "zod": "^3.0.0"
+  }
+}
