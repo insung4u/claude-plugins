@@ -12,7 +12,7 @@
   "plugins": [
     {
       "name": "infographic-generator",
-      "source": "./infographic-generator",
+      "source": "./plugins/infographic-generator",
       "description": "한글 완벽 지원 인포그래픽 생성기 (HTML/CSS + Puppeteer)",
       "version": "1.0.0",
       "author": {
@@ -24,7 +24,7 @@
     },
     {
       "name": "plugin-creator",
-      "source": "./plugin-creator",
+      "source": "./plugins/plugin-creator",
       "description": "Claude Code 플러그인을 대화형으로 만들어주는 플러그인 생성 도우미",
       "version": "1.0.0",
       "author": {
