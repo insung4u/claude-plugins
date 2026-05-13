@@ -17,15 +17,15 @@ Claude Code에 실용적인 기능을 더하는 플러그인 컬렉션.
 
 ### 일반 사용자용
 
-| 플러그인 | 설명 | 설치 |
-|---------|------|------|
-| [`infographic-generator`](./plugins/infographic-generator/) | 한글 완벽 지원 인포그래픽 생성기 (HTML/CSS → PNG) | `/plugin install infographic-generator@insung4u-plugins` |
+| 플러그인 | 설명 |
+|---------|------|
+| [`infographic-generator`](./plugins/infographic-generator/) | 한글 완벽 지원 인포그래픽 생성기 (HTML/CSS → PNG) |
 
 ### 개발자용
 
-| 플러그인 | 설명 | 설치 |
-|---------|------|------|
-| [`plugin-creator`](./plugins/plugin-creator/) | 새 Claude Code 플러그인을 대화형으로 만드는 도우미 | `/plugin install plugin-creator@insung4u-plugins` |
+| 플러그인 | 설명 |
+|---------|------|
+| [`plugin-creator`](./plugins/plugin-creator/) | 새 Claude Code 플러그인을 대화형으로 만드는 도우미 |
 
 ## 플러그인 구조
 
