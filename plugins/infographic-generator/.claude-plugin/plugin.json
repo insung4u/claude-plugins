@@ -1,6 +1,6 @@
 {
   "name": "infographic-generator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "한글 완벽 지원 인포그래픽 생성기 (HTML/CSS + Puppeteer)",
   "mcpServers": {
     "puppeteer-renderer": {

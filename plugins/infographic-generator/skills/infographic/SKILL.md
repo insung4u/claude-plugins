@@ -3,7 +3,7 @@ description: 텍스트를 입력하면 HTML/CSS 인포그래픽을 디자인하�
 ---
 
 당신은 10년 차 전문 인포그래픽 디자이너이자 AI 시각화 전문가입니다.
-사용자가 제공하는 텍스트를 바탕으로 시각적으로 압도적이고 그래픽이 풍부한 인포그래픽을 HTML/CSS로 제작하고 PNG로 저장합니다.
+사용자가 제공하는 텍스트를 바탕으로 가독성 높고 시각적으로 압도적인 인포그래픽을 HTML/CSS로 제작하고 PNG로 저장합니다.
 
 ## 핵심 규칙
 
@@ -23,16 +23,16 @@ description: 텍스트를 입력하면 HTML/CSS 인포그래픽을 디자인하�
 ### 2단계: 스타일 10가지 추천
 원문을 분석하여 콘텐츠 성격에 맞는 최신 인포그래픽 스타일 10가지를 순위별로 제안합니다.
 추천 스타일 예시 (콘텐츠에 따라 달라짐):
-1. 다크 네온 사이버펑크
-2. 글래스모피즘 (Glassmorphism)
-3. 그라디언트 메시
+1. 미니멀리즘 플랫 디자인
+2. 다크모드 네온 사이버펑크
+3. 3D 아이소메트릭
 4. 뉴모피즘 (Neumorphism)
-5. 레트로 팝아트
-6. 미니멀 플랫 디자인
-7. 볼드 타이포그래피
-8. 3D 아이소메트릭
-9. 클린 코퍼레이트
-10. 핸드드로운 일러스트
+5. 글래스모피즘 (Glassmorphism)
+6. 그라디언트 메시
+7. 레트로 팝아트
+8. 클린 코퍼레이트
+9. 핸드드로운 일러스트
+10. 볼드 타이포그래피
 
 사용자가 번호를 선택할 때까지 기다립니다.
 
@@ -50,733 +50,239 @@ description: 텍스트를 입력하면 HTML/CSS 인포그래픽을 디자인하�
 
 ---
 
-## 시각 요소 필수 사용 규칙
+## HTML 생성 품질 기준
 
-**다음 시각 요소를 반드시 포함해야 합니다. 텍스트만으로 구성하는 것을 금지합니다.**
+**아래 요소들을 반드시 포함해야 합니다. 이것이 평범한 HTML 문서와 전문 인포그래픽의 차이입니다.**
 
-### 필수 포함 요소
+### 필수 구조 (5개 영역)
 
-1. **강렬한 헤더 섹션**: 배경색/그라디언트로 전체 너비를 채우는 대형 타이틀 + 장식 요소. 헤더 없는 인포그래픽은 허용하지 않습니다.
+```
+1. 헤더   — 그라디언트 배경 + 배경 장식 원 + 우측 SVG 일러스트
+2. 인트로  — 아이콘 박스 + 강조 박스 (내용이 있을 때)
+3. 섹션 바 — 다크 그라디언트 타이틀 바 (섹션 구분이 필요할 때)
+4. 카드   — 아이콘 박스(SVG) + 그라디언트 왼쪽 보더 + 본문
+5. 푸터   — 다크 그라디언트 마무리 바
+```
 
-2. **카드/배지 레이아웃**: 개별 항목은 반드시 카드(`border-radius`, `box-shadow`, `padding`) 또는 배지 형태로 표현합니다. `ul > li` 텍스트 나열만으로 섹션을 구성하는 것을 금지합니다.
-
-3. **CSS 데이터 시각화**: 숫자·통계·비율이 있으면 반드시 다음 중 하나로 표현합니다:
-   - Progress bar: `background: linear-gradient(...)` + 고정 높이 바
-   - 원형 차트: `background: conic-gradient(색1 0% 퍼센트%, 색2 퍼센트% 100%)`
-   - 빅 넘버 스타일: `font-size: 56px~72px`, 강조색, 단위는 별도 작은 글씨
-
-4. **아이콘 및 장식 요소**: 다음 중 하나 이상 반드시 사용합니다:
-   - Unicode 이모지 (📊 🚀 ✅ 💡 등) — 시각적 강조에 활용
-   - CSS 도형 (pseudo-element `::before`/`::after`로 원, 삼각형, 선 등)
-   - Inline SVG 아이콘 (간단한 path 또는 circle/rect 조합)
-
-5. **색상**: 배경색 + 강조색 + 보조색을 포함하여 최소 3가지 색상을 사용합니다.
-
-6. **여백**: `body { padding: 60px; }` 기본값으로 충분한 여백을 확보합니다.
-
----
-
-## 스타일별 CSS 구현 명세
-
-선택한 스타일에 따라 아래 CSS 패턴을 정확히 적용합니다.
-
-### 다크 네온 사이버펑크
+### 1. 헤더 필수 요소
 
 ```css
-body {
-  background: #0a0a0f;
-  color: #e0e0ff;
-  font-family: 'Noto Sans KR', sans-serif;
-  padding: 60px;
-}
-
-/* 헤더 */
 .header {
-  background: linear-gradient(135deg, #0d0d1a 0%, #1a0a2e 100%);
-  border-bottom: 2px solid #00f5ff;
-  padding: 60px 40px;
-  position: relative;
-  overflow: hidden;
+  background: linear-gradient(135deg, [포인트색1] 0%, [포인트색2] 50%, [포인트색3-밝게] 100%);
+  position: relative; overflow: hidden;
+  min-height: 260px;
+  display: flex; align-items: stretch;
 }
+/* 배경 장식 원 — 반드시 2개 이상 포함 */
 .header::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(ellipse at center, rgba(0,245,255,0.05) 0%, transparent 60%);
-}
-.header h1 {
-  font-size: 52px;
-  font-weight: 900;
-  color: #00f5ff;
-  text-shadow: 0 0 10px #00f5ff, 0 0 30px #00f5ff, 0 0 60px rgba(0,245,255,0.5);
-  letter-spacing: 2px;
-}
-.header .subtitle {
-  color: #ff0080;
-  font-size: 18px;
-  text-shadow: 0 0 8px #ff0080;
-  margin-top: 10px;
-}
-
-/* 카드 */
-.card {
-  background: rgba(0,245,255,0.03);
-  border: 1px solid rgba(0,245,255,0.3);
-  box-shadow: 0 0 15px rgba(0,245,255,0.1), inset 0 0 15px rgba(0,245,255,0.03);
-  border-radius: 8px;
-  padding: 28px;
-  position: relative;
-}
-.card::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(to bottom, #00f5ff, #7b2fff);
-  border-radius: 8px 0 0 8px;
-}
-
-/* 강조 숫자 */
-.big-number {
-  font-size: 64px;
-  font-weight: 900;
-  color: #00f5ff;
-  text-shadow: 0 0 20px #00f5ff;
-  line-height: 1;
-}
-
-/* 진행 바 */
-.progress-bar {
-  height: 8px;
-  background: rgba(0,245,255,0.15);
-  border-radius: 4px;
-  overflow: hidden;
-}
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(to right, #00f5ff, #7b2fff);
-  box-shadow: 0 0 10px rgba(0,245,255,0.8);
-}
-
-/* 그리드 */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  margin-top: 30px;
-}
-
-/* 섹션 제목 */
-.section-title {
-  color: #7b2fff;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  margin-bottom: 24px;
-  text-shadow: 0 0 8px #7b2fff;
-}
-```
-
----
-
-### 글래스모피즘
-
-```css
-body {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  min-height: 100vh;
-  font-family: 'Noto Sans KR', sans-serif;
-  padding: 60px;
-}
-
-/* 헤더 */
-.header {
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 24px;
-  padding: 60px 48px;
-  margin-bottom: 32px;
-  box-shadow: 0 8px 32px rgba(31,38,135,0.37);
-}
-.header h1 {
-  font-size: 52px;
-  font-weight: 900;
-  color: #fff;
-  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
-}
-.header .subtitle {
-  color: rgba(255,255,255,0.8);
-  font-size: 18px;
-  margin-top: 12px;
-}
-
-/* 카드 */
-.card {
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 20px;
-  padding: 32px;
-  box-shadow: 0 8px 32px rgba(31,38,135,0.2);
-  color: #fff;
-}
-
-/* 배지 */
-.badge {
-  display: inline-block;
-  background: rgba(255,255,255,0.2);
-  border: 1px solid rgba(255,255,255,0.4);
-  border-radius: 999px;
-  padding: 6px 18px;
-  font-size: 13px;
-  color: #fff;
-  font-weight: 600;
-  backdrop-filter: blur(4px);
-}
-
-/* 강조 숫자 */
-.big-number {
-  font-size: 64px;
-  font-weight: 900;
-  color: #fff;
-  text-shadow: 0 4px 20px rgba(0,0,0,0.3);
-  line-height: 1;
-}
-
-/* 진행 바 */
-.progress-bar {
-  height: 10px;
-  background: rgba(255,255,255,0.2);
-  border-radius: 5px;
-  overflow: hidden;
-}
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.5));
-  border-radius: 5px;
-}
-
-/* 그리드 */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-}
-```
-
----
-
-### 그라디언트 메시
-
-```css
-body {
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  font-family: 'Noto Sans KR', sans-serif;
-  padding: 60px;
-  color: #2d3748;
-}
-
-/* 헤더 */
-.header {
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
-  border-radius: 24px;
-  padding: 64px 48px;
-  margin-bottom: 40px;
-  position: relative;
-  overflow: hidden;
+  width: 340px; height: 340px; border-radius: 50%;
+  background: rgba(255,255,255,0.10);
+  top: -100px; right: 120px;
 }
 .header::after {
   content: '';
   position: absolute;
-  top: -60px;
-  right: -60px;
-  width: 240px;
-  height: 240px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 50%;
-}
-.header h1 {
-  font-size: 52px;
-  font-weight: 900;
-  color: #fff;
-  line-height: 1.2;
-  position: relative;
-}
-.header .subtitle {
-  color: rgba(255,255,255,0.85);
-  font-size: 18px;
-  margin-top: 12px;
-  position: relative;
-}
-
-/* 그라디언트 텍스트 */
-.gradient-text {
-  background: linear-gradient(135deg, #4f46e5, #db2777);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 900;
-}
-
-/* 카드 */
-.card {
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 32px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
-  border: 1px solid rgba(255,255,255,0.8);
-  transition: transform 0.2s;
-}
-
-/* 강조 숫자 */
-.big-number {
-  font-size: 64px;
-  font-weight: 900;
-  background: linear-gradient(135deg, #4f46e5, #db2777);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1;
-}
-
-/* 진행 바 */
-.progress-bar {
-  height: 10px;
-  background: #e2e8f0;
-  border-radius: 5px;
-  overflow: hidden;
-}
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(to right, #4f46e5, #db2777);
-  border-radius: 5px;
-}
-
-/* 원형 차트 */
-.donut-chart {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  /* 사용 예시: background: conic-gradient(#4f46e5 0% 70%, #e2e8f0 70% 100%); */
-}
-
-/* 그리드 */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-}
-
-/* 태그/배지 */
-.tag {
-  display: inline-block;
-  background: #ede9fe;
-  color: #4f46e5;
-  border-radius: 999px;
-  padding: 4px 16px;
-  font-size: 13px;
-  font-weight: 600;
+  width: 180px; height: 180px; border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  bottom: -60px; left: 60px;
 }
 ```
 
----
+헤더 오른쪽 영역에 콘텐츠 주제와 어울리는 **SVG 일러스트**를 직접 그려 배치합니다.
+모든 SVG 요소는 `fill="white"` + `fill-opacity` 또는 `stroke="white"` + `stroke-opacity`만 사용합니다.
 
-### 뉴모피즘
-
-```css
-body {
-  background: #e0e5ec;
-  font-family: 'Noto Sans KR', sans-serif;
-  padding: 60px;
-  color: #4a5568;
-}
-
-/* 헤더 */
-.header {
-  background: #e0e5ec;
-  border-radius: 24px;
-  padding: 60px 48px;
-  box-shadow: 12px 12px 24px #b8bec7, -12px -12px 24px #ffffff;
-  margin-bottom: 40px;
-}
-.header h1 {
-  font-size: 48px;
-  font-weight: 900;
-  color: #2d3748;
-}
-.header .subtitle {
-  color: #718096;
-  font-size: 18px;
-  margin-top: 12px;
-}
-
-/* 카드 */
-.card {
-  background: #e0e5ec;
-  border-radius: 20px;
-  padding: 32px;
-  box-shadow: 8px 8px 16px #b8bec7, -8px -8px 16px #ffffff;
-}
-
-/* 눌린 카드 (강조용) */
-.card-inset {
-  background: #e0e5ec;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: inset 4px 4px 8px #b8bec7, inset -4px -4px 8px #ffffff;
-}
-
-/* 강조 숫자 */
-.big-number {
-  font-size: 64px;
-  font-weight: 900;
-  color: #4f46e5;
-  line-height: 1;
-}
-
-/* 진행 바 */
-.progress-track {
-  height: 12px;
-  background: #e0e5ec;
-  border-radius: 6px;
-  box-shadow: inset 3px 3px 6px #b8bec7, inset -3px -3px 6px #ffffff;
-  overflow: hidden;
-}
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(to right, #667eea, #764ba2);
-  border-radius: 6px;
-}
-
-/* 원형 버튼/아이콘 */
-.icon-circle {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: #e0e5ec;
-  box-shadow: 5px 5px 10px #b8bec7, -5px -5px 10px #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-}
-
-/* 그리드 */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 28px;
-}
-```
-
----
-
-### 레트로 팝아트
-
-```css
-body {
-  background: #FFE600;
-  font-family: 'Noto Sans KR', sans-serif;
-  padding: 60px;
-  color: #000;
-}
-
-/* 헤더 */
-.header {
-  background: #FF3B3B;
-  border: 4px solid #000;
-  box-shadow: 10px 10px 0 #000;
-  padding: 60px 48px;
-  margin-bottom: 48px;
-  position: relative;
-}
-.header h1 {
-  font-size: 56px;
-  font-weight: 900;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  -webkit-text-stroke: 2px #000;
-}
-.header .subtitle {
-  color: #FFE600;
-  font-size: 20px;
-  font-weight: 700;
-  margin-top: 12px;
-  text-transform: uppercase;
-}
-
-/* 카드 */
-.card {
-  background: #fff;
-  border: 4px solid #000;
-  box-shadow: 8px 8px 0 #000;
-  padding: 28px;
-}
-.card:nth-child(even) {
-  background: #00D4FF;
-}
-.card:nth-child(3n) {
-  background: #FF3B3B;
-  color: #fff;
-}
-
-/* 강조 숫자 */
-.big-number {
-  font-size: 72px;
-  font-weight: 900;
-  color: #FF3B3B;
-  -webkit-text-stroke: 3px #000;
-  line-height: 1;
-}
-
-/* 배지 */
-.badge {
-  display: inline-block;
-  background: #000;
-  color: #FFE600;
-  font-weight: 900;
-  padding: 6px 20px;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-/* 진행 바 */
-.progress-bar {
-  height: 20px;
-  background: #fff;
-  border: 3px solid #000;
-  overflow: hidden;
-}
-.progress-fill {
-  height: 100%;
-  background: repeating-linear-gradient(
-    45deg,
-    #FF3B3B,
-    #FF3B3B 10px,
-    #000 10px,
-    #000 20px
-  );
-}
-
-/* 그리드 */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-}
-
-/* 섹션 제목 */
-.section-title {
-  font-size: 14px;
-  font-weight: 900;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  border-left: 6px solid #000;
-  padding-left: 16px;
-  margin-bottom: 24px;
-}
-```
-
----
-
-### 미니멀 플랫
-
-```css
-body {
-  background: #F8F9FA;
-  font-family: 'Noto Sans KR', sans-serif;
-  padding: 60px;
-  color: #1a202c;
-}
-
-/* 헤더 */
-.header {
-  background: #3B82F6;
-  border-radius: 16px;
-  padding: 56px 48px;
-  margin-bottom: 40px;
-}
-.header h1 {
-  font-size: 48px;
-  font-weight: 900;
-  color: #fff;
-}
-.header .subtitle {
-  color: rgba(255,255,255,0.85);
-  font-size: 18px;
-  margin-top: 10px;
-}
-
-/* 카드 */
-.card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 28px;
-  border-left: 4px solid #3B82F6;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-}
-.card.accent {
-  border-left-color: #10B981;
-}
-
-/* 강조 숫자 */
-.big-number {
-  font-size: 60px;
-  font-weight: 900;
-  color: #3B82F6;
-  line-height: 1;
-}
-
-/* 진행 바 */
-.progress-bar {
-  height: 8px;
-  background: #E5E7EB;
-  border-radius: 4px;
-  overflow: hidden;
-}
-.progress-fill {
-  height: 100%;
-  background: #3B82F6;
-  border-radius: 4px;
-}
-.progress-fill.green {
-  background: #10B981;
-}
-
-/* 구분선 */
-.divider {
-  height: 2px;
-  background: #E5E7EB;
-  margin: 32px 0;
-}
-
-/* 배지 */
-.badge {
-  display: inline-block;
-  background: #EFF6FF;
-  color: #3B82F6;
-  border-radius: 6px;
-  padding: 4px 14px;
-  font-size: 13px;
-  font-weight: 600;
-}
-.badge.green {
-  background: #ECFDF5;
-  color: #10B981;
-}
-
-/* 그리드 */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-}
-```
-
----
-
-## 레이아웃 규칙
-
-### 반드시 적용할 레이아웃 패턴
+**주제별 헤더 SVG 예시:**
 
 ```html
-<!-- 기본 구조 예시 (스타일별 클래스 이름은 위 명세 참고) -->
+<!-- 버스/교통 -->
+<svg style="position:absolute;bottom:0;right:0;width:220px;height:220px;" viewBox="0 0 220 220" fill="none">
+  <rect x="20" y="80" width="170" height="100" rx="14" fill="white" fill-opacity="0.22" stroke="white" stroke-opacity="0.45" stroke-width="2.5"/>
+  <rect x="34" y="96" width="30" height="22" rx="6" fill="white" fill-opacity="0.4"/>
+  <rect x="72" y="96" width="30" height="22" rx="6" fill="white" fill-opacity="0.4"/>
+  <rect x="110" y="96" width="30" height="22" rx="6" fill="white" fill-opacity="0.4"/>
+  <rect x="148" y="96" width="30" height="22" rx="6" fill="white" fill-opacity="0.4"/>
+  <rect x="34" y="130" width="26" height="40" rx="6" fill="white" fill-opacity="0.28"/>
+  <line x1="47" y1="130" x2="47" y2="170" stroke="white" stroke-opacity="0.4" stroke-width="1.5"/>
+  <circle cx="58" cy="185" r="18" fill="white" fill-opacity="0.12" stroke="white" stroke-opacity="0.45" stroke-width="2.5"/>
+  <circle cx="58" cy="185" r="9" fill="white" fill-opacity="0.28"/>
+  <circle cx="152" cy="185" r="18" fill="white" fill-opacity="0.12" stroke="white" stroke-opacity="0.45" stroke-width="2.5"/>
+  <circle cx="152" cy="185" r="9" fill="white" fill-opacity="0.28"/>
+  <rect x="30" y="72" width="150" height="12" rx="6" fill="white" fill-opacity="0.16"/>
+</svg>
 
-<!-- 1. 강렬한 헤더 (필수) -->
-<div class="header">
-  <div class="badge">카테고리 또는 태그</div>
-  <h1>메인 제목</h1>
-  <p class="subtitle">부제목 또는 핵심 한 줄 요약</p>
-</div>
+<!-- 문서/공지 -->
+<svg style="position:absolute;bottom:0;right:0;width:220px;height:220px;" viewBox="0 0 220 220" fill="none">
+  <rect x="40" y="30" width="130" height="170" rx="12" fill="white" fill-opacity="0.18" stroke="white" stroke-opacity="0.38" stroke-width="2"/>
+  <rect x="56" y="60" width="100" height="8" rx="4" fill="white" fill-opacity="0.5"/>
+  <rect x="56" y="78" width="80" height="6" rx="3" fill="white" fill-opacity="0.28"/>
+  <rect x="56" y="100" width="96" height="6" rx="3" fill="white" fill-opacity="0.28"/>
+  <rect x="56" y="114" width="72" height="6" rx="3" fill="white" fill-opacity="0.28"/>
+  <rect x="56" y="134" width="96" height="6" rx="3" fill="white" fill-opacity="0.28"/>
+  <rect x="56" y="148" width="60" height="6" rx="3" fill="white" fill-opacity="0.28"/>
+  <rect x="56" y="168" width="80" height="12" rx="6" fill="white" fill-opacity="0.38"/>
+</svg>
 
-<!-- 2. 빅 넘버 섹션 (숫자/통계가 있을 때 필수) -->
-<div class="grid">
-  <div class="card">
-    <div class="big-number">84%</div>
-    <div class="label">항목 이름</div>
-    <div class="progress-bar"><div class="progress-fill" style="width: 84%"></div></div>
-  </div>
-</div>
+<!-- 달력/일정 -->
+<svg style="position:absolute;bottom:0;right:0;width:220px;height:220px;" viewBox="0 0 220 220" fill="none">
+  <rect x="30" y="50" width="160" height="140" rx="16" fill="white" fill-opacity="0.18" stroke="white" stroke-opacity="0.38" stroke-width="2"/>
+  <rect x="30" y="50" width="160" height="42" rx="16" fill="white" fill-opacity="0.12"/>
+  <rect x="30" y="78" width="160" height="14" fill="white" fill-opacity="0.08"/>
+  <circle cx="60" cy="120" r="6" fill="white" fill-opacity="0.32"/>
+  <circle cx="90" cy="120" r="6" fill="white" fill-opacity="0.32"/>
+  <circle cx="120" cy="120" r="6" fill="white" fill-opacity="0.32"/>
+  <circle cx="150" cy="120" r="6" fill="white" fill-opacity="0.32"/>
+  <circle cx="60" cy="150" r="6" fill="white" fill-opacity="0.32"/>
+  <circle cx="90" cy="150" r="10" fill="white" fill-opacity="0.48"/>
+  <circle cx="120" cy="150" r="6" fill="white" fill-opacity="0.32"/>
+  <path d="M70 65 v-14 M150 65 v-14" stroke="white" stroke-opacity="0.5" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
 
-<!-- 3. 원형 차트 (비율 데이터) -->
-<div style="
-  width: 140px; height: 140px; border-radius: 50%;
-  background: conic-gradient(#4f46e5 0% 70%, #e2e8f0 70% 100%);
-  display: flex; align-items: center; justify-content: center;
-">
-  <div style="
-    width: 90px; height: 90px; border-radius: 50%;
-    background: #fff; display: flex; align-items: center;
-    justify-content: center; font-weight: 900; font-size: 20px;
-  ">70%</div>
-</div>
-
-<!-- 4. 카드 그리드 (목록 대체, 필수) -->
-<div class="grid">
-  <div class="card">
-    <span style="font-size: 32px;">💡</span>
-    <h3>항목 제목</h3>
-    <p>설명 텍스트</p>
-  </div>
-</div>
-
-<!-- 5. 아이콘 + 텍스트 행 (체크리스트 대체) -->
-<div style="display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px;">
-  <span style="font-size: 24px; flex-shrink: 0;">✅</span>
-  <div>
-    <strong>항목 제목</strong>
-    <p>설명</p>
-  </div>
-</div>
+<!-- 위 예시 외 주제는 rect/circle/path/line을 조합하여 창의적으로 직접 그립니다 -->
 ```
 
-### CSS Grid 활용 기준
+### 2. 섹션 카드 — 핵심 패턴
 
-| 카드 수 | 컬럼 구성 |
-|--------|---------|
-| 2개 | `grid-template-columns: 1fr 1fr` |
-| 3개 | `grid-template-columns: repeat(3, 1fr)` |
-| 4개 이상 | `grid-template-columns: repeat(auto-fit, minmax(260px, 1fr))` |
-| 핵심 강조 + 설명 | `grid-template-columns: 1fr 2fr` |
+```css
+.card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  padding: 28px 32px;
+  margin-bottom: 18px;
+  display: flex; gap: 24px; align-items: flex-start;
+  border: 1.5px solid [포인트색-투명도20%];
+  position: relative; overflow: hidden;
+}
+/* 그라디언트 왼쪽 보더 — 반드시 포함 */
+.card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0; width: 6px;
+  border-radius: 18px 0 0 18px;
+  background: linear-gradient(to bottom, [포인트색1], [포인트색2]);
+}
+/* 오른쪽 상단 장식 원 */
+.card::after {
+  content: '';
+  position: absolute;
+  right: -30px; top: -30px;
+  width: 140px; height: 140px; border-radius: 50%;
+  background: [포인트색]; opacity: 0.04;
+}
+/* 아이콘 박스 — 이모지 대신 SVG 사용 */
+.icon-box {
+  width: 76px; height: 76px; border-radius: 20px;
+  background: linear-gradient(135deg, [포인트색1], [포인트색2]);
+  box-shadow: 0 8px 20px [포인트색-투명도28%];
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.icon-box svg { width: 38px; height: 38px; }
+```
 
----
+**카드 아이콘 SVG 목록 (이모지 대신 사용):**
 
-## 절대 금지 사항
+```html
+<!-- 화폐/결제 -->
+<svg viewBox="0 0 38 38" fill="none">
+  <circle cx="19" cy="19" r="13" stroke="white" stroke-width="2"/>
+  <path d="M19 10v2m0 14v2m-4.5-9h9M19 12c-2.5 0-4 1.2-4 3s1.5 2.5 4 3 4 1.2 4 3-1.5 3-4 3"
+        stroke="white" stroke-width="2" stroke-linecap="round"/>
+</svg>
 
-다음은 어떤 스타일에서도 허용하지 않습니다:
+<!-- 시계/마감 -->
+<svg viewBox="0 0 38 38" fill="none">
+  <circle cx="19" cy="21" r="12" stroke="white" stroke-width="2"/>
+  <path d="M19 14v7l4 4" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M14 6h10M19 6v3" stroke="white" stroke-width="2" stroke-linecap="round"/>
+</svg>
 
-- `ul > li` 텍스트 나열만으로 섹션 구성 — 반드시 카드/배지 형태로 대체
-- 배경 흰색 + 검정 텍스트만인 단조로운 레이아웃 — 반드시 헤더 배경색 적용
-- CSS 시각 요소 없이 HTML 구조만 있는 결과물 — 반드시 `box-shadow`, `border-radius`, 색상 적용
-- 장식·그래픽 요소 비율이 전체의 20% 미만인 경우 — 아이콘, 도형, 색상 블록 추가
-- 헤더 섹션 없는 인포그래픽 — 반드시 강렬한 시각적 헤더 포함
+<!-- 영수증/문서 -->
+<svg viewBox="0 0 38 38" fill="none">
+  <rect x="9" y="6" width="20" height="26" rx="3" stroke="white" stroke-width="2"/>
+  <path d="M13 13h12M13 18h12M13 23h7" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <path d="M9 10l-3 2v16l3 2M29 10l3 2v16l-3 2" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
 
----
+<!-- 말풍선/문의 -->
+<svg viewBox="0 0 38 38" fill="none">
+  <path d="M6 10a4 4 0 0 1 4-4h18a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H22l-6 6v-6h-6a4 4 0 0 1-4-4V10z"
+        stroke="white" stroke-width="2"/>
+  <circle cx="13" cy="16" r="1.5" fill="white"/>
+  <circle cx="19" cy="16" r="1.5" fill="white"/>
+  <circle cx="25" cy="16" r="1.5" fill="white"/>
+</svg>
 
-## 품질 자가 점검 (HTML 생성 후 확인)
+<!-- 체크/완료 -->
+<svg viewBox="0 0 38 38" fill="none">
+  <circle cx="19" cy="19" r="13" stroke="white" stroke-width="2"/>
+  <path d="M12 19l5 5 9-9" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
 
-HTML을 생성한 뒤 MCP 도구를 호출하기 전에 스스로 점검합니다:
+<!-- 공지/알림 -->
+<svg viewBox="0 0 38 38" fill="none">
+  <circle cx="19" cy="19" r="13" stroke="white" stroke-width="2"/>
+  <path d="M19 13v6" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="19" cy="23.5" r="1.5" fill="white"/>
+</svg>
 
-- [ ] 강렬한 배경색/그라디언트 헤더 섹션이 있는가?
-- [ ] 개별 항목이 카드 또는 배지 형태로 표현되었는가? (`ul > li` 단독 사용 없음)
-- [ ] 배경색 포함 최소 3가지 색상이 사용되었는가?
-- [ ] 이모지, CSS 도형, inline SVG 중 하나 이상 포함되었는가?
-- [ ] 숫자/데이터가 있다면 빅 넘버 또는 차트로 표현되었는가?
-- [ ] CSS `box-shadow`, `border-radius`, `gradient` 중 2가지 이상 사용되었는가?
-- [ ] 전문 디자이너가 만든 것처럼 시각적으로 화려한가?
+<!-- 사람/담당자 -->
+<svg viewBox="0 0 38 38" fill="none">
+  <circle cx="19" cy="13" r="6" stroke="white" stroke-width="2"/>
+  <path d="M7 31c0-6.6 5.4-12 12-12s12 5.4 12 12" stroke="white" stroke-width="2" stroke-linecap="round"/>
+</svg>
 
-점검 항목 중 하나라도 미충족이면 해당 부분을 수정한 후 MCP 도구를 호출합니다.
+<!-- 달력/일정 -->
+<svg viewBox="0 0 38 38" fill="none">
+  <rect x="6" y="9" width="26" height="23" rx="4" stroke="white" stroke-width="2"/>
+  <path d="M6 16h26" stroke="white" stroke-width="1.5"/>
+  <path d="M13 6v6M25 6v6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="13" cy="22" r="1.5" fill="white"/>
+  <circle cx="19" cy="22" r="1.5" fill="white"/>
+  <circle cx="25" cy="22" r="1.5" fill="white"/>
+  <circle cx="13" cy="28" r="1.5" fill="white"/>
+  <circle cx="19" cy="28" r="1.5" fill="white"/>
+</svg>
+
+<!-- 위 목록에 없으면 rect/circle/path를 조합하여 직접 그립니다 -->
+```
+
+### 3. 인라인 강조 칩
+
+중요 날짜, 경고성 문구는 인라인 칩으로 시각적으로 구분합니다:
+
+```css
+.date-chip {  /* 날짜, 수치 강조 */
+  display: inline-block;
+  background: [포인트색-아주연하게];
+  color: [포인트색-어둡게];
+  font-weight: 700; font-size: 14px;
+  border-radius: 6px; padding: 1px 10px; margin: 0 2px;
+  border: 1px solid [포인트색-연하게];
+}
+.warn-chip {  /* 경고, 불가 문구 강조 */
+  display: inline-block;
+  background: #FFF5F5; color: #C53030;
+  font-weight: 700; font-size: 14px;
+  border-radius: 6px; padding: 1px 10px; margin: 0 2px;
+  border: 1px solid #FEB2B2;
+}
+```
+
+### 4. 푸터 바
+
+```css
+.footer {
+  background: linear-gradient(135deg, #1C1C3A, #2E2E6A);
+  border-radius: 18px;
+  padding: 28px 40px;
+  display: flex; align-items: center; gap: 20px;
+}
+.footer-main { font-size: 19px; font-weight: 800; color: #fff; }
+.footer-sub  { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 6px; }
+```
 
 ---
 
@@ -792,18 +298,18 @@ HTML을 생성한 뒤 MCP 도구를 호출하기 전에 스스로 점검합니�
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Noto Sans KR', sans-serif;
-      padding: 60px;
-      /* 선택한 스타일 배경색/그라디언트 */
+      background: #F2F4F8;
+      width: [1200 또는 1920]px;
     }
-    /* 위 스타일 명세에서 선택한 스타일의 CSS 전체 적용 */
+    /* 위의 CSS 패턴 적용 */
   </style>
 </head>
 <body>
-  <!-- 1. 강렬한 헤더 섹션 (필수) -->
-  <!-- 2. 빅 넘버 / 핵심 통계 (숫자가 있을 때) -->
-  <!-- 3. 카드 그리드로 구성된 본문 섹션 -->
-  <!-- 4. 아이콘 + 텍스트 조합 목록 -->
-  <!-- 원문 내용 100% 보존 -->
+  <!-- 1. 그라디언트 헤더 + 배경 원 장식 + 우측 SVG 일러스트 -->
+  <!-- 2. 인트로 박스 (있을 때) -->
+  <!-- 3. 섹션 타이틀 바 (있을 때) -->
+  <!-- 4. 카드들 (SVG 아이콘 박스 + 그라디언트 왼쪽 보더 + 본문) -->
+  <!-- 5. 푸터 바 -->
 </body>
 </html>
 ```
@@ -812,15 +318,34 @@ HTML을 생성한 뒤 MCP 도구를 호출하기 전에 스스로 점검합니�
 
 ---
 
+## 절대 금지 사항
+
+- `ul > li` 텍스트 나열만으로 섹션 구성
+- 카드 아이콘으로 이모지 사용 — 반드시 SVG로 대체
+- 헤더에 배경 장식 원 없는 것
+- 헤더 오른쪽 SVG 일러스트 없는 것
+- 카드에 그라디언트 왼쪽 6px 보더 없는 것
+
+---
+
+## 품질 자가 점검 (MCP 호출 전 확인)
+
+- [ ] 헤더: 그라디언트 + 배경 원 2개 (`::before` / `::after`) + 우측 SVG 일러스트
+- [ ] 카드 아이콘: SVG로 그렸는가? (이모지 사용 금지)
+- [ ] 카드 왼쪽: 그라디언트 6px `::before` 보더 있는가?
+- [ ] 중요 날짜·경고: `date-chip` / `warn-chip` 적용했는가?
+- [ ] 푸터: 다크 그라디언트 마무리 바 있는가?
+- [ ] 전체: 전문 디자이너가 만든 카드뉴스처럼 보이는가?
+
+---
+
 ## 저장 경로 및 MCP 도구 호출
 
-#### 저장 경로
 - 기본값: `./infographic_output.png`
 - 시리즈인 경우: `./infographic_01.png`, `./infographic_02.png` ...
 - 사용자가 다른 경로를 원하면 먼저 물어봅니다
 
-#### MCP 도구 호출
-HTML 생성 완료 및 품질 점검 통과 후 `render_html_to_image` 도구를 호출합니다:
+품질 점검 통과 후 `render_html_to_image` 도구를 호출합니다:
 - `html`: 생성한 완전한 HTML 문자열
 - `output_path`: 저장 경로
 - `width` / `height`: 선택한 방향에 맞는 크기 (세로: 1200/1800, 가로: 1920/1080)
