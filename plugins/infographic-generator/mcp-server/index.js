@@ -3,7 +3,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 import puppeteer from "puppeteer-core";
 import path from "path";
-import { existsSync, readFileSync } from "fs";
+import { existsSync, readFileSync, writeFileSync, mkdirSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
@@ -78,7 +78,7 @@ server.tool(
   "HTML을 PNG 이미지로 변환하여 파일로 저장합니다",
   {
     html: z.string().describe("렌더링할 HTML 전체 내용"),
-    output_path: z.string().describe("저장할 PNG 파일 경로 (절대경로 또는 상대경로)"),
+    output_path: z.string().endsWith(".png").describe("저장할 PNG 파일 경로 (절대경로 또는 상대경로, 반드시 .png로 끝나야 함)"),
     width: z.number().optional().default(1200).describe("뷰포트 너비 (px)"),
     height: z.number().optional().default(1800).describe("뷰포트 높이 (px)"),
   },
@@ -137,14 +137,22 @@ server.tool(
           isError: true,
         };
       }
+
+      // PNG 출력 디렉토리 생성 (없으면 자동 생성)
+      mkdirSync(path.dirname(resolvedPath), { recursive: true });
+
       await page.screenshot({
         path: resolvedPath,
         fullPage: true,
         type: "png",
       });
 
+      // HTML 파일도 함께 저장 (.png → .html)
+      const htmlPath = resolvedPath.replace(/\.png$/i, ".html");
+      writeFileSync(htmlPath, processedHtml, "utf-8");
+
       return {
-        content: [{ type: "text", text: `✅ 이미지 저장 완료: ${resolvedPath}` }],
+        content: [{ type: "text", text: `✅ 저장 완료\n  📄 HTML: ${htmlPath}\n  🖼️  PNG:  ${resolvedPath}` }],
       };
     } catch (error) {
       // Strip absolute paths from system error messages to avoid leaking internal paths

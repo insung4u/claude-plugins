@@ -984,12 +984,19 @@ body {
 
 ## 저장 경로 및 MCP 도구 호출
 
-- 기본값: `./infographic_output.png`
-- 시리즈: `./infographic_01.png`, `./infographic_02.png` ...
+PNG와 HTML이 **동일한 경로에 함께 저장**됩니다. PNG 경로를 지정하면 같은 이름의 `.html` 파일이 자동 생성됩니다.
+
+- 기본값: `./infographic_output.png` → `./infographic_output.html` 도 함께 저장
+- 시리즈: `./infographic_01.png` + `./infographic_01.html`, `./infographic_02.png` + `./infographic_02.html` ...
+- 사용자가 원하면 하위 디렉토리도 가능: `./output/infographic.png` (디렉토리 자동 생성)
+- 사용자가 다른 경로를 원하면 먼저 물어봅니다
 
 품질 점검 통과 후 `render_html_to_image` 도구를 호출합니다:
 - `html`: 생성한 완전한 HTML 문자열
-- `output_path`: 저장 경로
+- `output_path`: 저장할 PNG 파일 경로
 - `width` / `height`: (세로: 1200/1800, 가로: 1920/1080)
+
+저장 완료 후 다음과 같이 안내합니다:
+> "📄 HTML 파일은 웹사이트에 바로 삽입하거나 브라우저에서 열어볼 수 있습니다."
 
 > **참고**: Noto Sans KR 폰트는 MCP 서버가 자동으로 주입합니다. `<link>` 태그 불필요.

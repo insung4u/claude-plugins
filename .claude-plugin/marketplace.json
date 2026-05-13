@@ -14,7 +14,7 @@
       "name": "infographic-generator",
       "source": "./plugins/infographic-generator",
       "description": "한글 완벽 지원 인포그래픽 생성기 (HTML/CSS + Puppeteer)",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "author": {
         "name": "insung4u",
         "email": "insung4u@gmail.com"
