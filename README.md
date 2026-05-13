@@ -3,9 +3,9 @@
 Claude Code에 실용적인 기능을 더하는 플러그인 컬렉션.
 [@insung4u](https://github.com/insung4u) 가 만들고 관리합니다.
 
-> **Claude Code 플러그인**이란?
-> `/plugin install <name>` 한 줄로 설치하면 `/<plugin>:<skill>` 형태의 새 기능이 Claude Code에 추가됩니다.
-> Windows, macOS, Linux 모두 지원합니다.
+**Claude Code 플러그인**이란?  
+`/plugin install <name>` 한 줄로 설치하면 `/<plugin>:<skill>` 형태의 새 기능이 Claude Code에 추가됩니다.  
+Windows, macOS, Linux 모두 지원합니다.
 
 ## 마켓플레이스 등록
 
